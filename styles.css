@@ -47,10 +47,10 @@ body {
 
 body {
   margin: 0;
-  background: radial-gradient(900px 520px at 8% -10%, rgba(122, 162, 255, 0.34), transparent 55%),
+  /* background: radial-gradient(900px 520px at 8% -10%, rgba(122, 162, 255, 0.34), transparent 55%), */
     /* radial-gradient(900px 520px at 100% 0%, rgba(52, 211, 153, 0.16), transparent 55%), */
     /* radial-gradient(900px 520px at 60% 120%, rgba(251, 191, 36, 0.10), transparent 55%), */
-    var(--bg);
+    /* var(--bg); */
   color: var(--text);
   font-family: var(--sans);
 }
