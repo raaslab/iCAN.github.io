@@ -1,0 +1,280 @@
+[
+  {
+    "image_path": "detections/detections-20260208/hires_20260208-212321_bottle_0.94.jpg",
+    "image_id": "hires_20260208-212321_bottle_0.94",
+    "status": "ok",
+    "display_name": "A&W Root Beer, soda, 500 mL bottle",
+    "detection_level": "best",
+    "brand": "A&W",
+    "product_name": "A&W Root Beer",
+    "variant": "Root Beer",
+    "category": "soda",
+    "container_type": "bottle",
+    "package_size_value": 500,
+    "package_size_unit": "mL",
+    "package_size_text": "500 mL",
+    "package_description": "500 mL bottle",
+    "catalog_match": "",
+    "confidence": 0.8,
+    "evidence": {
+      "ocr": {
+        "text": "",
+        "engine": "none",
+        "rotation": "rot0",
+        "size_text": "500 mL"
+      },
+      "vlm_output": {
+        "brand": "A&W",
+        "product_variant": "Root Beer",
+        "product_family": "soda",
+        "container_type": "bottle",
+        "container_spec": "plastic",
+        "size_text": "500 mL",
+        "best_catalog_match": "A&W Root Beer",
+        "confidence": 0.8,
+        "evidence": [
+          "logo",
+          "shape"
+        ],
+        "notes": "The image shows a plastic bottle with a label indicating it is A&W Root Beer, a well-known soda brand.",
+        "raw": "```json\n{\n  \"brand\": \"A&W\",\n  \"product_variant\": \"Root Beer\",\n  \"product_family\": \"soda\",\n  \"container_type\": \"bottle\",\n  \"container_spec\": \"plastic\",\n  \"size_text\": \"500 mL\",\n  \"best_catalog_match\": \"A&W Root Beer\",\n  \"confidence\": 0.8,\n  \"evidence\": [\"logo\", \"shape\"],\n  \"notes\": \"The image shows a plastic bottle with a label indicating it is A&W Root Beer, a well-known soda brand.\"\n}\n```"
+      },
+      "resolver_output": {
+        "catalog_match": "",
+        "brand": "A&W",
+        "product_variant": "Root Beer",
+        "product_family": "soda",
+        "container_type": "bottle",
+        "container_spec": "plastic",
+        "size_text": "500 mL",
+        "confidence": 0.8,
+        "reasons": [],
+        "raw": " {\n  \"brand\": \"A&W\",\n  \"product_variant\": \"Root Beer\",\n  \"product_family\": \"soda\",\n  \"container_type\": \"bottle\",\n  \"container_spec\": \"plastic\",\n  \"size_text\": \"500 mL\",\n  \"confidence\": 0.8,\n  \"reasons\": []\n}"
+      },
+      "top_brand_candidates": [],
+      "top_family_candidates": []
+    },
+    "provenance": {
+      "pipeline": "open_world_vlm_ocr",
+      "ocr_backend": "paddle",
+      "vlm_model": "qwen2.5vl:7b",
+      "resolver_model": "mistral:7b-instruct"
+    },
+    "issues": {
+      "warnings": [],
+      "errors": []
+    },
+    "debug": {
+      "pipeline": "open_world_vlm_ocr"
+    }
+  },
+  {
+    "image_path": "detections/detections-20260208/hires_20260208-212333_can_0.86.jpg",
+    "image_id": "hires_20260208-212333_can_0.86",
+    "status": "ok",
+    "display_name": "Coca-Cola Star Wars Edition, soda, 12 fl oz can",
+    "detection_level": "best",
+    "brand": "Coca-Cola",
+    "product_name": "Coca-Cola Star Wars Edition",
+    "variant": "Star Wars Edition",
+    "category": "soda",
+    "container_type": "can",
+    "package_size_value": 12,
+    "package_size_unit": "fl oz",
+    "package_size_text": "12 fl oz",
+    "package_description": "12 fl oz can",
+    "catalog_match": "",
+    "confidence": 0.8,
+    "evidence": {
+      "ocr": {
+        "text": "",
+        "engine": "none",
+        "rotation": "rot0",
+        "size_text": "12 fl oz"
+      },
+      "vlm_output": {
+        "brand": "Coca-Cola",
+        "product_variant": "Star Wars",
+        "product_family": "soda",
+        "container_type": "can",
+        "container_spec": "aluminum",
+        "size_text": "12 fl oz",
+        "best_catalog_match": "Coca-Cola Star Wars Edition",
+        "confidence": 0.8,
+        "evidence": [
+          "logo",
+          "shape"
+        ],
+        "notes": "The image shows a close-up of a red can with a silver pull-tab, which is characteristic of a Coca-Cola can. The 'Star Wars' logo suggests a special edition product.",
+        "raw": "```json\n{\n  \"brand\": \"Coca-Cola\",\n  \"product_variant\": \"Star Wars\",\n  \"product_family\": \"soda\",\n  \"container_type\": \"can\",\n  \"container_spec\": \"aluminum\",\n  \"size_text\": \"12 fl oz\",\n  \"best_catalog_match\": \"Coca-Cola Star Wars Edition\",\n  \"confidence\": 0.8,\n  \"evidence\": [\"logo\", \"shape\"],\n  \"notes\": \"The image shows a close-up of a red can with a silver pull-tab, which is characteristic of a Coca-Cola can. The 'Star Wars' logo suggests a special edition product.\"\n}\n```"
+      },
+      "resolver_output": {
+        "catalog_match": "",
+        "brand": "Coca-Cola",
+        "product_variant": "Star Wars Edition",
+        "product_family": "soda",
+        "container_type": "can",
+        "container_spec": "aluminum",
+        "size_text": "12 fl oz",
+        "confidence": 0.8,
+        "reasons": [
+          "logo",
+          "shape"
+        ],
+        "raw": " {\n  \"brand\": \"Coca-Cola\",\n  \"product_variant\": \"Star Wars Edition\",\n  \"product_family\": \"soda\",\n  \"container_type\": \"can\",\n  \"container_spec\": \"aluminum\",\n  \"size_text\": \"12 fl oz\",\n  \"confidence\": 0.8,\n  \"reasons\": [\"logo\", \"shape\"]\n}"
+      },
+      "top_brand_candidates": [],
+      "top_family_candidates": []
+    },
+    "provenance": {
+      "pipeline": "open_world_vlm_ocr",
+      "ocr_backend": "paddle",
+      "vlm_model": "qwen2.5vl:7b",
+      "resolver_model": "mistral:7b-instruct"
+    },
+    "issues": {
+      "warnings": [],
+      "errors": []
+    },
+    "debug": {
+      "pipeline": "open_world_vlm_ocr"
+    }
+  },
+  {
+    "image_path": "detections/detections-20260208/hires_20260208-212404_bottle_0.97.jpg",
+    "image_id": "hires_20260208-212404_bottle_0.97",
+    "status": "ok",
+    "display_name": "Pepsi, soda, bottle",
+    "detection_level": "medium",
+    "brand": "Pepsi",
+    "product_name": "Pepsi",
+    "variant": "",
+    "category": "soda",
+    "container_type": "bottle",
+    "package_size_value": null,
+    "package_size_unit": "",
+    "package_size_text": "",
+    "package_description": "bottle",
+    "catalog_match": "",
+    "confidence": 0.8,
+    "evidence": {
+      "ocr": {
+        "text": "",
+        "engine": "none",
+        "rotation": "rot0",
+        "size_text": ""
+      },
+      "vlm_output": {
+        "brand": "Pepsi",
+        "product_variant": "",
+        "product_family": "soda",
+        "container_type": "bottle",
+        "container_spec": "plastic",
+        "size_text": "",
+        "best_catalog_match": "Pepsi bottle",
+        "confidence": 0.8,
+        "evidence": [
+          "logo"
+        ],
+        "notes": "The image shows a close-up of a Pepsi bottle with a visible logo.",
+        "raw": "```json\n{\n  \"brand\": \"Pepsi\",\n  \"product_variant\": \"\",\n  \"product_family\": \"soda\",\n  \"container_type\": \"bottle\",\n  \"container_spec\": \"plastic\",\n  \"size_text\": \"\",\n  \"best_catalog_match\": \"Pepsi bottle\",\n  \"confidence\": 0.8,\n  \"evidence\": [\"logo\"],\n  \"notes\": \"The image shows a close-up of a Pepsi bottle with a visible logo.\"\n}\n```"
+      },
+      "resolver_output": {
+        "catalog_match": "",
+        "brand": "Pepsi",
+        "product_variant": "",
+        "product_family": "soda",
+        "container_type": "bottle",
+        "container_spec": "plastic",
+        "size_text": "",
+        "confidence": 0.8,
+        "reasons": [],
+        "raw": " {\n  \"brand\": \"Pepsi\",\n  \"product_variant\": \"\",\n  \"product_family\": \"soda\",\n  \"container_type\": \"bottle\",\n  \"container_spec\": \"plastic\",\n  \"size_text\": \"\",\n  \"confidence\": 0.8,\n  \"reasons\": []\n}"
+      },
+      "top_brand_candidates": [],
+      "top_family_candidates": []
+    },
+    "provenance": {
+      "pipeline": "open_world_vlm_ocr",
+      "ocr_backend": "paddle",
+      "vlm_model": "qwen2.5vl:7b",
+      "resolver_model": "mistral:7b-instruct"
+    },
+    "issues": {
+      "warnings": [],
+      "errors": []
+    },
+    "debug": {
+      "pipeline": "open_world_vlm_ocr"
+    }
+  },
+  {
+    "image_path": "detections/detections-20260208/hires_20260208-212446_thermoform_0.93.jpg",
+    "image_id": "hires_20260208-212446_thermoform_0.93",
+    "status": "ok",
+    "display_name": "Pete & Gerry's Organic Eggs Organic, dairy, Grade A Large clamshell",
+    "detection_level": "best",
+    "brand": "Pete & Gerry's Organic Eggs",
+    "product_name": "Pete & Gerry's Organic Eggs Organic",
+    "variant": "Organic",
+    "category": "dairy",
+    "container_type": "clamshell",
+    "package_size_value": null,
+    "package_size_unit": "",
+    "package_size_text": "Grade A Large",
+    "package_description": "Grade A Large clamshell",
+    "catalog_match": "",
+    "confidence": 0.8,
+    "evidence": {
+      "ocr": {
+        "text": "",
+        "engine": "none",
+        "rotation": "rot0",
+        "size_text": "Grade A Large"
+      },
+      "vlm_output": {
+        "brand": "Pete & Gerry's",
+        "product_variant": "Organic",
+        "product_family": "dairy",
+        "container_type": "clamshell",
+        "container_spec": "12 Fresh Brown Eggs",
+        "size_text": "Grade A Large",
+        "best_catalog_match": "egg carton",
+        "confidence": 0.8,
+        "evidence": [
+          "logo",
+          "text"
+        ],
+        "notes": "The image shows a package of eggs with organic and free-range certifications.",
+        "raw": "```json\n{\n  \"brand\": \"Pete & Gerry's\",\n  \"product_variant\": \"Organic\",\n  \"product_family\": \"dairy\",\n  \"container_type\": \"clamshell\",\n  \"container_spec\": \"12 Fresh Brown Eggs\",\n  \"size_text\": \"Grade A Large\",\n  \"best_catalog_match\": \"egg carton\",\n  \"confidence\": 0.8,\n  \"evidence\": [\"logo\", \"text\"],\n  \"notes\": \"The image shows a package of eggs with organic and free-range certifications.\"\n}\n```"
+      },
+      "resolver_output": {
+        "catalog_match": "",
+        "brand": "Pete & Gerry's Organic Eggs",
+        "product_variant": "Organic",
+        "product_family": "dairy",
+        "container_type": "clamshell",
+        "container_spec": "12 Fresh Brown Eggs, Grade A Large",
+        "size_text": "Grade A Large",
+        "confidence": 0.8,
+        "reasons": [],
+        "raw": " {\n  \"brand\": \"Pete & Gerry's Organic Eggs\",\n  \"product_variant\": \"Organic\",\n  \"product_family\": \"dairy\",\n  \"container_type\": \"clamshell\",\n  \"container_spec\": \"12 Fresh Brown Eggs, Grade A Large\",\n  \"size_text\": \"Grade A Large\",\n  \"confidence\": 0.8,\n  \"reasons\": []\n}"
+      },
+      "top_brand_candidates": [],
+      "top_family_candidates": []
+    },
+    "provenance": {
+      "pipeline": "open_world_vlm_ocr",
+      "ocr_backend": "paddle",
+      "vlm_model": "qwen2.5vl:7b",
+      "resolver_model": "mistral:7b-instruct"
+    },
+    "issues": {
+      "warnings": [],
+      "errors": []
+    },
+    "debug": {
+      "pipeline": "open_world_vlm_ocr"
+    }
+  }
+]

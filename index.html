@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>iCAN – Prediction Reports</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/github-markdown-css@5.6.1/github-markdown.min.css"
+    />
+  </head>
+  <body>
+    <header class="topbar">
+      <div class="topbar__inner">
+        <div class="topbar__title">
+          <div class="brand">iCAN</div>
+          <div class="subtitle">Prediction reports + JSON viewer</div>
+        </div>
+        <div class="topbar__actions">
+          <a class="link" href="./README.md" target="_blank" rel="noreferrer">Docs</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="layout">
+      <aside class="panel panel--datasets" aria-label="Datasets">
+        <div class="datasetsHeader">
+          <div class="datasetsTitle">Datasets</div>
+          <button id="reloadBtn" class="button button--secondary button--sm" type="button">Reload</button>
+        </div>
+        <div id="datasetList" class="datasetList" role="list"></div>
+      </aside>
+
+      <section class="panel panel--controls">
+        <div class="row">
+          <div class="tabs" role="tablist" aria-label="View mode">
+            <button id="tabReport" class="tab tab--active" type="button" role="tab" aria-selected="true">
+              Report
+            </button>
+            <button id="tabData" class="tab" type="button" role="tab" aria-selected="false">Data</button>
+          </div>
+          <div class="hint">Use <strong>Report</strong> to review; <strong>Data</strong> to search/filter.</div>
+        </div>
+
+        <div class="row row--wrap" id="dataFilters">
+          <div class="field">
+            <label class="label" for="searchInput">Search</label>
+            <input id="searchInput" class="input" placeholder="brand, product, category, image_id..." />
+          </div>
+          <div class="field">
+            <label class="label" for="statusSelect">Status</label>
+            <select id="statusSelect" class="select">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="categorySelect">Category</label>
+            <select id="categorySelect" class="select">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="minConfidence">Min confidence</label>
+            <input id="minConfidence" class="input" type="number" min="0" max="1" step="0.05" value="0" />
+          </div>
+        </div>
+
+        <div class="row">
+          <div id="stats" class="stats">Loading…</div>
+        </div>
+      </section>
+
+      <section class="panel panel--report" id="reportPanel" aria-label="Report">
+        <div id="reportBody" class="markdown-body reportBody"></div>
+      </section>
+
+      <section class="panel panel--table" id="tablePanel" aria-label="Data table" hidden>
+        <div class="tableWrap">
+          <table class="table" aria-label="Predictions">
+            <thead>
+              <tr>
+                <th>Display</th>
+                <th>Brand</th>
+                <th>Category</th>
+                <th>Status</th>
+                <th>Confidence</th>
+                <th>Image ID</th>
+              </tr>
+            </thead>
+            <tbody id="rows"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <aside class="panel panel--detail" id="detailPanel" aria-label="Selected item" hidden>
+        <div class="detailHeader">
+          <div class="detailTitle" id="detailTitle">Select a row</div>
+          <div class="detailMeta" id="detailMeta"></div>
+        </div>
+        <a id="detailImgLink" class="detailImgLink" href="#" target="_blank" rel="noreferrer" hidden>
+          <img id="detailImg" class="detailImg" alt="" loading="lazy" />
+        </a>
+        <pre class="detailJson" id="detailJson">{}</pre>
+      </aside>
+    </main>
+
+    <footer class="footer">
+      <span>Tip: host on GitHub Pages and keep JSON under <code>iCAN.github.io/data/</code>.</span>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked@12.0.2/marked.min.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
