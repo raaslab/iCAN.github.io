@@ -2,21 +2,16 @@
   "datasets": [
     {
       "id": "full_new_frames_vlm_ocr",
-      "title": "Full New Frames (vlm ocr)",
+      "title": "New Dataset",
       "jsonPath": "./data/predictions_full_new_frames_vlm_ocr.json",
       "reportPath": "./reports/predictions_full_new_frames_vlm_ocr.md"
     },
     {
       "id": "full_open_world_vlm_ocr",
-      "title": "Full Open World (vlm ocr)",
+      "title": "Initial Dataset",
       "jsonPath": "./data/predictions_full_open_world_vlm_ocr.json",
       "reportPath": "./reports/predictions_full_open_world_vlm_ocr.md"
-    },
-    {
-      "id": "smoke_open_world_vlm_ocr",
-      "title": "Smoke Open World (vlm ocr)",
-      "jsonPath": "./data/predictions_smoke_open_world_vlm_ocr.json",
-      "reportPath": "./reports/predictions_smoke_open_world_vlm_ocr.md"
     }
+    
   ]
 }
