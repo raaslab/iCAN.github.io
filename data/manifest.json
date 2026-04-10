@@ -1,6 +1,13 @@
 {
   "datasets": [
 
+      {
+      "id": "off_vlm_ocr",
+      "title": "OpenFoodFacts Improved",
+      "jsonPath": "./data/predictions_full_off_vlm_ocr.json",
+      "reportPath": "./reports/predictions_full_off_vlm_ocr.md"
+    },
+
      {
       "id": "off_ocr",
       "title": "OpenFoodFacts Cross Check",

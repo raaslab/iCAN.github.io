@@ -71,15 +71,21 @@ function pillForEvidence(item) {
   const parts = [];
   const ev = item.evidence || {};
   
-  if (ev.ocr && ev.ocr.text && ev.ocr.text.trim()) parts.push(`<span class="pill pill--blue">ocr</span>`);
-  if (ev.barcodes && ev.barcodes.length > 0) parts.push(`<span class="pill pill--green">barcode</span>`);
+  if (ev.ocr && ev.ocr.text && ev.ocr.text.trim()) {
+    parts.push(`<span class="pill pill--blue">ocr</span>`);
+  }
+  
+  if (ev.barcodes && ev.barcodes.length > 0) {
+    const hasLookup = ev.barcodes.some(b => b.lookup_data);
+    parts.push(`<span class="pill pill--green">${hasLookup ? "lookup" : "barcode"}</span>`);
+  }
   
   // VLM evidence
   const vlmEv = ev.vlm_output?.evidence || [];
   if (vlmEv.includes("logo")) parts.push(`<span class="pill pill--purple">logo</span>`);
   if (vlmEv.includes("shape")) parts.push(`<span class="pill pill--orange">shape</span>`);
   
-  if (item.packaging_material) parts.push(`<span class="pill pill--pink">off</span>`);
+  if (item.packaging_material) parts.push(`<span class="pill pill--pink">material</span>`);
   
   return parts.join(" ");
 }
@@ -299,6 +305,60 @@ function renderDetail(item) {
 
   els.detailTitle.textContent = normalizeString(title);
   els.detailMeta.textContent = metaParts.join(" • ");
+
+  // Enhanced details section
+  let detailHtml = "";
+  
+  // Provenance (Models)
+  if (item.provenance) {
+    const p = item.provenance;
+    detailHtml += `<div class="detailSection">
+      <div class="detailSection__title">Provenance</div>
+      <div class="detailSection__grid">
+        <div class="kv"><span>Pipeline</span><code>${escapeHtml(p.pipeline)}</code></div>
+        <div class="kv"><span>VLM</span><code>${escapeHtml(p.vlm_model)}</code></div>
+        <div class="kv"><span>OCR</span><code>${escapeHtml(p.ocr_backend)}</code></div>
+        <div class="kv"><span>Resolver</span><code>${escapeHtml(p.resolver_model)}</code></div>
+      </div>
+    </div>`;
+  }
+
+  // Barcode Lookups
+  const barcodes = item.evidence?.barcodes || [];
+  if (barcodes.length > 0) {
+    const lookups = barcodes.filter(b => b.lookup_data);
+    detailHtml += `<div class="detailSection">
+      <div class="detailSection__title">Barcodes (${barcodes.length})</div>
+      <div class="detailSection__list">
+        ${barcodes.map(b => `
+          <div class="barcodeItem">
+            <div class="barcodeValue">${escapeHtml(b.value)} <span class="dim">(${escapeHtml(b.extractor)})</span></div>
+            ${b.lookup_data ? `<div class="barcodeLookup">${escapeHtml(b.lookup_data)} <span class="pill pill--xs pill--green">${escapeHtml(b.lookup_db)}</span></div>` : ""}
+          </div>
+        `).join("")}
+      </div>
+    </div>`;
+  }
+
+  // Issues
+  const warnings = item.issues?.warnings || [];
+  const errors = item.issues?.errors || [];
+  if (warnings.length > 0 || errors.length > 0) {
+    detailHtml += `<div class="detailSection">
+      <div class="detailSection__title">Issues</div>
+      <div class="issueList">
+        ${errors.map(e => `<div class="issue issue--error">${escapeHtml(e)}</div>`).join("")}
+        ${warnings.map(w => `<div class="issue issue--warn">${escapeHtml(w)}</div>`).join("")}
+      </div>
+    </div>`;
+  }
+
+  // Only update if we have content
+  const infoGroup = document.getElementById("detailInfoGroup");
+  if (infoGroup) {
+    infoGroup.innerHTML = detailHtml;
+  }
+
   els.detailJson.textContent = JSON.stringify(item, null, 2);
 
   const imagePath = normalizeString(item.image_path || item.image || "");

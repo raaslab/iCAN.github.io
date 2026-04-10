@@ -563,12 +563,123 @@ select.select optgroup {
   padding: 10px;
   background: rgba(0, 0, 0, 0.15);
   overflow: auto;
-  max-height: 62vh;
+  max-height: 40vh;
   font-family: var(--mono);
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1.45;
   white-space: pre-wrap;
   word-break: break-word;
+  color: var(--muted);
+}
+
+.detailInfoGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-bottom: 14px;
+}
+
+.detailSection {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.detailSection__title {
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+}
+
+.detailSection__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.kv {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 6px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+.kv span {
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.kv code {
+  font-size: 11px;
+}
+
+.detailSection__list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.barcodeItem {
+  background: rgba(255, 255, 255, 0.03);
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+}
+
+.barcodeValue {
+  font-size: 12px;
+  font-family: var(--mono);
+  margin-bottom: 4px;
+}
+
+.barcodeValue .dim {
+  color: var(--muted);
+  font-size: 11px;
+  font-family: var(--sans);
+}
+
+.barcodeLookup {
+  font-size: 13px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.pill--xs {
+  font-size: 10px;
+  padding: 1px 6px;
+}
+
+.issueList {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.issue {
+  padding: 8px 10px;
+  border-radius: 8px;
+  font-size: 12px;
+  border: 1px solid transparent;
+}
+
+.issue--error {
+  background: rgba(251, 113, 133, 0.1);
+  border-color: rgba(251, 113, 133, 0.3);
+  color: #fda4af;
+}
+
+.issue--warn {
+  background: rgba(251, 191, 36, 0.1);
+  border-color: rgba(251, 191, 36, 0.3);
+  color: #fcd34d;
 }
 
 .footer {
