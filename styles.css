@@ -71,7 +71,7 @@ code {
 }
 
 .topbar__inner {
-  max-width: 1240px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 0 6px;
   display: flex;
@@ -116,13 +116,13 @@ code {
   grid-template-columns: 1fr;
   gap: 14px;
   padding: 14px;
-  max-width: 1240px;
+  max-width: 1800px;
   margin: 0 auto;
 }
 
 @media (min-width: 1000px) {
   .layout {
-    grid-template-columns: 300px 1fr 420px;
+    grid-template-columns: 280px 1fr 450px;
     grid-template-rows: auto 1fr;
   }
   .panel--controls {
@@ -245,8 +245,29 @@ code {
   display: flex;
   flex-direction: column;
   gap: 6px;
-  min-width: 160px;
-  flex: 1;
+  min-width: 140px;
+  flex: 1 1 140px;
+}
+
+.field--checkbox {
+  flex: 1 1 200px;
+}
+
+.checkboxGroup {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+.checkboxLabel {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  user-select: none;
 }
 
 .label {
@@ -475,6 +496,31 @@ select.select optgroup {
   color: var(--bad);
 }
 
+.pill--blue {
+  border-color: rgba(122, 162, 255, 0.5);
+  color: #7aa2ff;
+}
+
+.pill--green {
+  border-color: rgba(52, 211, 153, 0.5);
+  color: #34d399;
+}
+
+.pill--purple {
+  border-color: rgba(167, 139, 250, 0.5);
+  color: #a78bfa;
+}
+
+.pill--orange {
+  border-color: rgba(251, 146, 60, 0.5);
+  color: #fb923c;
+}
+
+.pill--pink {
+  border-color: rgba(244, 114, 182, 0.5);
+  color: #f472b6;
+}
+
 .panel--detail {
   padding: 12px;
 }
@@ -526,7 +572,7 @@ select.select optgroup {
 }
 
 .footer {
-  max-width: 1200px;
+  max-width: 1800px;
   margin: 0 auto;
   padding: 10px 16px 20px;
   color: var(--muted);

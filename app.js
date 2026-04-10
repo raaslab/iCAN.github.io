@@ -11,7 +11,13 @@ const els = {
   searchInput: document.getElementById("searchInput"),
   statusSelect: document.getElementById("statusSelect"),
   categorySelect: document.getElementById("categorySelect"),
+  brandSelect: document.getElementById("brandSelect"),
+  containerSelect: document.getElementById("containerSelect"),
+  detectionSelect: document.getElementById("detectionSelect"),
   minConfidence: document.getElementById("minConfidence"),
+  hasOCR: document.getElementById("hasOCR"),
+  hasBarcode: document.getElementById("hasBarcode"),
+  hasMaterial: document.getElementById("hasMaterial"),
   stats: document.getElementById("stats"),
   rows: document.getElementById("rows"),
   detailTitle: document.getElementById("detailTitle"),
@@ -42,6 +48,7 @@ function pickRowText(item) {
     item.product_name,
     item.variant,
     item.category,
+    item.packaging_material,
     item.container_type,
     item.package_size_text,
     item.image_id,
@@ -58,6 +65,23 @@ function pillForStatus(status) {
   if (s === "warn" || s === "warning") return `<span class="pill pill--warn">${escapeHtml(s)}</span>`;
   if (s === "error" || s === "failed") return `<span class="pill pill--bad">${escapeHtml(s)}</span>`;
   return `<span class="pill">${escapeHtml(s)}</span>`;
+}
+
+function pillForEvidence(item) {
+  const parts = [];
+  const ev = item.evidence || {};
+  
+  if (ev.ocr && ev.ocr.text && ev.ocr.text.trim()) parts.push(`<span class="pill pill--blue">ocr</span>`);
+  if (ev.barcodes && ev.barcodes.length > 0) parts.push(`<span class="pill pill--green">barcode</span>`);
+  
+  // VLM evidence
+  const vlmEv = ev.vlm_output?.evidence || [];
+  if (vlmEv.includes("logo")) parts.push(`<span class="pill pill--purple">logo</span>`);
+  if (vlmEv.includes("shape")) parts.push(`<span class="pill pill--orange">shape</span>`);
+  
+  if (item.packaging_material) parts.push(`<span class="pill pill--pink">off</span>`);
+  
+  return parts.join(" ");
 }
 
 function escapeHtml(s) {
@@ -82,7 +106,7 @@ let dataset = {
   indexed: []
 };
 
-let viewMode = "report"; // "report" | "data"
+let viewMode = "data"; // "report" | "data"
 let selectedDatasetId = null;
 
 function getSelectedDatasetMeta() {
@@ -163,8 +187,15 @@ function setSelectOptions(select, values, placeholder = "All") {
 function rebuildFacets() {
   const statuses = uniqSorted(dataset.items.map((x) => normalizeString(x.status)));
   const categories = uniqSorted(dataset.items.map((x) => normalizeString(x.category)));
+  const brands = uniqSorted(dataset.items.map((x) => normalizeString(x.brand)));
+  const containers = uniqSorted(dataset.items.map((x) => normalizeString(x.container_type)));
+  const detections = uniqSorted(dataset.items.map((x) => normalizeString(x.detection_level)));
+
   setSelectOptions(els.statusSelect, statuses);
   setSelectOptions(els.categorySelect, categories);
+  setSelectOptions(els.brandSelect, brands);
+  setSelectOptions(els.containerSelect, containers);
+  setSelectOptions(els.detectionSelect, detections);
 }
 
 function getFilters() {
@@ -172,7 +203,13 @@ function getFilters() {
     q: normalizeString(els.searchInput.value).trim().toLowerCase(),
     status: normalizeString(els.statusSelect.value).trim(),
     category: normalizeString(els.categorySelect.value).trim(),
-    minConfidence: Math.max(0, Math.min(1, toNumber(els.minConfidence.value, 0)))
+    brand: normalizeString(els.brandSelect.value).trim(),
+    container: normalizeString(els.containerSelect.value).trim(),
+    detection: normalizeString(els.detectionSelect.value).trim(),
+    minConfidence: Math.max(0, Math.min(1, toNumber(els.minConfidence.value, 0))),
+    hasOCR: els.hasOCR.checked,
+    hasBarcode: els.hasBarcode.checked,
+    hasMaterial: els.hasMaterial?.checked || false
   };
 }
 
@@ -183,6 +220,22 @@ function applyFilters() {
     if (f.q && !text.includes(f.q)) return false;
     if (f.status && normalizeString(item.status) !== f.status) return false;
     if (f.category && normalizeString(item.category) !== f.category) return false;
+    if (f.brand && normalizeString(item.brand) !== f.brand) return false;
+    if (f.container && normalizeString(item.container_type) !== f.container) return false;
+    if (f.detection && normalizeString(item.detection_level) !== f.detection) return false;
+
+    if (f.hasOCR) {
+      const ocrText = item.evidence?.ocr?.text || "";
+      if (!ocrText.trim()) return false;
+    }
+    if (f.hasBarcode) {
+      const barcodes = item.evidence?.barcodes || [];
+      if (barcodes.length === 0) return false;
+    }
+    if (f.hasMaterial && !item.packaging_material) {
+      return false;
+    }
+
     const c = toNumber(item.confidence, NaN);
     if (Number.isFinite(c) && c < f.minConfidence) return false;
     if (!Number.isFinite(c) && f.minConfidence > 0) return false;
@@ -210,6 +263,9 @@ function renderTable(items) {
       escapeHtml(item.display_name ?? ""),
       escapeHtml(item.brand ?? ""),
       escapeHtml(item.category ?? ""),
+      escapeHtml(item.packaging_material ?? ""),
+      escapeHtml(item.container_type ?? ""),
+      pillForEvidence(item),
       pillForStatus(item.status),
       escapeHtml(formatConfidence(item.confidence)),
       escapeHtml(item.image_id ?? "")
@@ -386,7 +442,13 @@ function wireEvents() {
   els.searchInput.addEventListener("input", onFilter);
   els.statusSelect.addEventListener("change", onFilter);
   els.categorySelect.addEventListener("change", onFilter);
+  els.brandSelect.addEventListener("change", onFilter);
+  els.containerSelect.addEventListener("change", onFilter);
+  els.detectionSelect.addEventListener("change", onFilter);
   els.minConfidence.addEventListener("input", onFilter);
+  els.hasOCR.addEventListener("change", onFilter);
+  els.hasBarcode.addEventListener("change", onFilter);
+  if (els.hasMaterial) els.hasMaterial.addEventListener("change", onFilter);
 }
 
 async function main() {
@@ -396,8 +458,9 @@ async function main() {
     selectedDatasetId = manifest.datasets[0].id;
     renderDatasetList();
     wireEvents();
-    setViewMode("report");
-    await loadSelected(getSelectedDatasetMeta());
+    setViewMode("data");
+    await loadData(getSelectedDatasetMeta());
+    if (dataset.items.length > 0) renderDetail(dataset.items[0]);
   } catch (err) {
     els.stats.textContent = `Error: ${err?.message ?? String(err)}`;
     els.detailTitle.textContent = "Failed to load";

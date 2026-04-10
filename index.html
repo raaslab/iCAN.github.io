@@ -61,8 +61,34 @@
             </select>
           </div>
           <div class="field">
+            <label class="label" for="brandSelect">Brand</label>
+            <select id="brandSelect" class="select">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="containerSelect">Container</label>
+            <select id="containerSelect" class="select">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="field">
+            <label class="label" for="detectionSelect">Detection</label>
+            <select id="detectionSelect" class="select">
+              <option value="">All</option>
+            </select>
+          </div>
+          <div class="field">
             <label class="label" for="minConfidence">Min confidence</label>
             <input id="minConfidence" class="input" type="number" min="0" max="1" step="0.05" value="0" />
+          </div>
+          <div class="field field--checkbox">
+            <label class="label">Features</label>
+            <div class="checkboxGroup">
+              <label class="checkboxLabel"><input type="checkbox" id="hasOCR" /> Has OCR</label>
+              <label class="checkboxLabel"><input type="checkbox" id="hasBarcode" /> Has Barcode</label>
+              <label class="checkboxLabel"><input type="checkbox" id="hasMaterial" /> Has Material</label>
+            </div>
           </div>
         </div>
 
@@ -83,6 +109,9 @@
                 <th>Display</th>
                 <th>Brand</th>
                 <th>Category</th>
+                <th>Material</th>
+                <th>Container</th>
+                <th>Evidence</th>
                 <th>Status</th>
                 <th>Confidence</th>
                 <th>Image ID</th>
